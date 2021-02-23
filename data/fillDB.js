@@ -17,7 +17,7 @@ let pets = [];
 
 const petsTableQuery = 'CREATE TABLE pets (id INT PRIMARY KEY, name varchar(30), breed varchar(50), specie varchar(50), age varchar(50), colour varchar(50), img text, owner varchar(50), userid integer, constraint fk_userid FOREIGN KEY(userid) references users(userid))';
 const userTableQuery = 'CREATE TABLE users (userid smallserial primary key , name varchar(50), age smallint);';
-
+const users = [["Pedro Riqueto Manqueto", 23],["juan Carlos de la Mora", 18], ["Jesus Altamirano del Valle", 33]];
 
 async function run (){
     // note: we don't try/catch this because if connecting throws an exception
@@ -40,6 +40,8 @@ async function run (){
 
         const insertPetsQuery = format('INSERT INTO pets (id, name, breed, specie, age, colour, img, owner) values %L', pets)
         const insert = await client.query(insertPetsQuery);
+        const insertUsersQuery = format('INSERT INTO users(name, age) values %L', users);
+        const insert2 = await client.query(insertUsersQuery);
         
         await client.query('COMMIT')
     } catch (e) {
