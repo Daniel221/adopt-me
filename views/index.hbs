@@ -1,0 +1,16 @@
+
+<ul class="list-unstyled">
+{{#each animals}}
+  <li class="media" id={{id}}>
+    <img class="" src={{img}}>
+    <div class="media-body">
+      <h3>{{name}}</h3>
+      <p>{{breed}}</p>
+      <p>{{specie}}</p>
+      <p>{{age}}</p>
+      <a href="/animals{{id}}"><button type="button" class="btn btn-primary">Details</button></a>
+      <a href="#"><button type="button" class="btn btn-success">Adopt Me!</button></a>
+    </div>
+  </li>
+{{/each}}
+</ul>

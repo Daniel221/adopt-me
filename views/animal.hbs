@@ -1,0 +1,11 @@
+<div class="container animal">
+    <ul class="list-unstylesd">
+
+        {{animal.name}}
+        <li><h2>{{animal.name}}</h2></li>
+        <li><img src={{animal.img}}> </li>
+        {{#each properties}}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>  
+</div>
