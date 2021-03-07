@@ -26,20 +26,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+// catch 404 & 400
+app.use(function(req, res) {
+  if(req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE')
+    res.status(400).render('error', {status: "400 Bad Request"});
+  res.status(404).render('error', {status:"404 Not found"});
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
 module.exports = app;

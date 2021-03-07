@@ -1,11 +1,13 @@
 <p class="adoption-text">You're adopting {{animal.name}}<br>
-please write your user's id so we can<br>
-register you on our database<br><br>
-Thank you for adopting!</p>
+    please write your user's id so we can<br>
+    register you on our database<br><br>
+    Thank you for adopting!</p>
 <form class="adoption-form">
     <div class="form-group">
         <label for="user-id">User ID</label>
         <input type="text" class="user-id" id="user-id">
     </div>
-    <a href="/"><button type="submit" class="btn btn-primary">Adopt</button></a>
+    <a href="/"><button type="submit" class="btn btn-primary" id="btn-adoption">Adopt</button></a>
 </form>
+
+<script src="./javascripts/adoption.js"></script>
