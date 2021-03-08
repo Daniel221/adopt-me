@@ -17,34 +17,28 @@ const schema = Joi.object({
   breed: Joi.string(),
   colour: Joi.string()
 });
-/* GET home page. */
-router.get('/', async function(req, res) {
-  const aux = await pool.query('SELECT * from pets where id < 40010');
-  const animals = aux.rows;
-  res.render('index', {animals});
-});
 
-router.get('/animals', async function(req, res) {
+router.get('/', async function(req, res) {
   const aux = await pool.query('SELECT * from pets');
   const animals = aux.rows;
   res.status(200).send(animals);
 });
 
-router.get('/animals:id', async function(req, res) {
+router.get('/:id', async function(req, res) {
   const {id} = req.params;
   const aux = await pool.query(`SELECT * from pets where id = $1`, [id]);
   const animal = aux.rows[0];
 ;  res.render('animal',{animal});
 });
 
-router.get('/animals/adoption:id', async(req, res) =>{
+router.get('/adoption:id', async(req, res) =>{
   const {id} = req.params;
   const aux = await pool.query('select * from pets where id = $1', [id]);
   const animal = aux.rows[0];
   res.render('adoption', {animal});
 })
 
-router.post('/animals', async (req, res) =>{
+router.post('/', async (req, res) =>{
   const {name, breed, specie, age, colour} = req.body;
 
   const result = schema.validate({name, age, breed, colour});
@@ -60,7 +54,7 @@ router.post('/animals', async (req, res) =>{
   }
 });
 
-router.put('/animals:id', async (req, res) =>{
+router.put('/:id', async (req, res) =>{
   const {id} = req.params;
   const {name, breed, specie, age, colour} = req.body;
   const animal = await pool.query('select * from pets where id = $1', [id]);
@@ -77,7 +71,7 @@ router.put('/animals:id', async (req, res) =>{
   }
 });
 
-router.delete('/animals:id', async(req, res) =>{
+router.delete('/:id', async(req, res) =>{
   const {id} = req.params;
   const pet = await pool.query('delete from pets where id = $1 returning *', [id]);
   res.status(200).send(pet.rows[0]);

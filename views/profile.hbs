@@ -15,4 +15,12 @@
         </ul>
     </div>
 </nav>
-<h1>{{status}}</h1>
+<h1>{{user.name}} {{user.lastname}} Profile</h1>
+<div class="media" id="profile-display">
+    <img class="user-img" src={{user.img}}>
+    <div class="media-body">
+        <h2>{{user.name}} {{user.lastname}}</h2>
+        <p><b>email: </b>{{user.email}}</p>
+        <p></p>
+    </div>
+</div>
